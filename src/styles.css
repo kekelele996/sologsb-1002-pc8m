@@ -72,9 +72,6 @@ button, input, textarea { font: inherit; }
 .comment-card .ant-card-body { padding: 10px; }
 .quote-line { width: 100%; padding: 7px 8px; border: 0; border-left: 3px solid #bd9361; color: #74665b; background: #f5f0e9; font-family: Georgia, "Songti SC", serif; font-size: 11px; font-style: italic; text-align: left; cursor: pointer; }
 .comment-body { margin: 9px 0 7px; color: #403a35; font-size: 12px; line-height: 1.55; }
-.suggestion-box { padding: 8px; border: 1px dashed #92b89f; border-radius: 6px; background: #f2f9f4; }
-.suggestion-box small { color: #477d61; font-size: 9px; font-weight: 700; }
-.suggestion-box p { margin: 4px 0 0; color: #315f49; font-size: 11px; line-height: 1.5; }
 .replies { margin-top: 8px; display: grid; gap: 4px; }
 .reply { display: flex; gap: 7px; padding: 5px 7px; border-radius: 5px; background: #f4f1ed; color: #655b53; font-size: 10px; }
 .reply b { flex: none; color: #7b3f2f; }
@@ -94,6 +91,53 @@ kbd { padding: 1px 4px; border: 1px solid #706158; border-radius: 3px; color: #f
 .version-row.changed { background: #fff9ec; }
 .composer { display: grid; gap: 8px; }
 .composer label { margin-top: 5px; color: #695e55; font-size: 11px; font-weight: 700; }
+
+/* 正文内的替换片段标记 */
+.paragraph-text { position: relative; }
+.snippet-pending { padding: 1px 1px; border-radius: 3px; background: linear-gradient(transparent 62%, rgba(211,169,93,.42) 62%); border-bottom: 1.5px solid #b47d33; color: inherit; cursor: pointer; transition: background .15s; }
+.snippet-pending:hover { background: rgba(211,169,93,.45); box-shadow: 0 0 0 3px rgba(180,125,51,.18); }
+.snippet-pending.flash { animation: snippet-flash 1.6s ease-out; }
+.snippet-accepted { padding: 1px 1px; border-radius: 3px; background: rgba(123,179,141,.18); border-bottom: 1.5px solid #5b9c7b; color: inherit; }
+.snippet-revision-pair { white-space: normal; }
+.snippet-del { padding: 1px 1px; border-radius: 3px; background: rgba(189,92,83,.16); color: #9c463f; text-decoration: line-through; }
+.snippet-ins { padding: 1px 1px; border-radius: 3px; background: rgba(91,156,123,.22); color: #2f6f52; text-decoration: underline; text-decoration-color: #3b8c67; text-underline-offset: 3px; }
+.legend-del { color: #9c463f; }
+.legend-ins { color: #2f6f52; text-decoration: underline; text-underline-offset: 2px; }
+@keyframes snippet-flash {
+  0%, 30% { background: rgba(211,169,93,.75); box-shadow: 0 0 0 4px rgba(180,125,51,.35); }
+  100% { background: rgba(211,169,93,.18); box-shadow: none; }
+}
+.paragraph-stale { display: grid; gap: 4px; margin-top: 6px; }
+.paragraph-stale button { justify-self: start; padding: 3px 8px; border: 1px solid #e8d3a2; border-radius: 99px; color: #8a6420; background: #fdf6e7; font-size: 10px; cursor: pointer; }
+.paragraph-stale button:hover { background: #faedcf; }
+
+/* 右侧建议卡片中的片段行 */
+.snippet-list { display: grid; gap: 7px; margin-top: 8px; }
+.snippet-row { padding: 8px 9px; border: 1px solid #e6ddcf; border-radius: 7px; background: #fffdf8; scroll-margin: 80px; }
+.snippet-row.accepted { border-color: #bfe0cd; background: #f4faf6; }
+.snippet-row.rejected { border-color: #eccbc7; background: #fdf7f6; opacity: .72; }
+.snippet-row.stale { border-color: #e3c487; background: #fef8ea; box-shadow: inset 3px 0 0 #d39a3f; }
+.snippet-row.flash { animation: snippet-flash 1.6s ease-out; }
+.snippet-index { margin-bottom: 5px; color: #9a8a7a; font-size: 9px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; }
+.snippet-flow { display: grid; grid-template-columns: minmax(0, 1fr) 16px minmax(0, 1fr); align-items: center; gap: 6px; }
+.snippet-cell { min-width: 0; padding: 5px 7px; border-radius: 5px; }
+.snippet-cell.old { background: #f4efe6; }
+.snippet-cell.new { background: #eef6f1; border: 1px dashed #a9cdb9; }
+.snippet-cell small { display: block; margin-bottom: 2px; font-size: 9px; color: #96887d; letter-spacing: .05em; }
+.snippet-cell q { quotes: '“' '”'; font-size: 11px; line-height: 1.55; color: #423a33; word-break: break-word; }
+.snippet-arrow { color: #a8947e; font-size: 10px; }
+.snippet-row .snippet-alert { margin-top: 6px; padding: 4px 8px; font-size: 10px; }
+.snippet-row .decision-row { margin-top: 7px; }
+.snippet-row > .ant-tag { margin-top: 7px; }
+.comment-card.flash { box-shadow: 0 0 0 3px rgba(180,125,51,.35), 0 3px 12px rgba(64,53,43,.08); }
+
+/* 审稿人片段建议编辑器 */
+.composer-tip { margin: 0; padding: 7px 10px; border-radius: 6px; color: #6d5a44; background: #f7efe2; font-size: 11px; line-height: 1.5; }
+.composer-snippet { display: grid; gap: 5px; padding: 9px 10px; border: 1px solid #e7dece; border-radius: 8px; background: #fdfbf7; }
+.composer-snippet-head { display: flex; align-items: center; justify-content: space-between; }
+.composer-snippet-head b { color: #7b3f2f; font-size: 11px; }
+.composer .occur-ok { color: #3b7c5c; font-size: 10px; }
+.composer .occur-bad { color: #b0741e; font-size: 10px; font-weight: 600; }
 .app-footer { position: fixed; left: 0; right: 0; bottom: 0; z-index: 20; height: 42px; display: flex; align-items: center; justify-content: space-between; padding: 0 18px; color: #a99d92; background: #29241f; font-size: 10px; }
 @media (max-width: 1220px) {
   .workspace { grid-template-columns: 210px minmax(540px, 1fr) 352px; }

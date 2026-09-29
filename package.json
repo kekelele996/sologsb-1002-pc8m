@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "verify": "esbuild scripts/verify-snippets.ts --bundle --platform=node --format=esm --resolve-extensions=.ts,.tsx,.js --outfile=scripts/.verify-bundle.mjs && node scripts/.verify-bundle.mjs && rm -f scripts/.verify-bundle.mjs"
   },
   "dependencies": {
     "@ant-design/icons": "^6.0.0",
