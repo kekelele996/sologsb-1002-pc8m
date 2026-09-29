@@ -57,6 +57,40 @@ button, input, textarea { font: inherit; }
 .revision-grid > div:last-child { background: #edf7f1; }
 .revision-grid small { color: #8e8176; font-size: 9px; font-weight: 700; text-transform: uppercase; }
 .revision-grid p { margin: 4px 0 0; font-family: Georgia, "Songti SC", serif; font-size: 12px; line-height: 1.7; }
+.revision-current.has-marks { outline: 1px solid #b9d0e8; }
+.revision-alert { max-width: 850px; margin: 0 auto 12px; font-size: 12px; }
+.revision-alert .ant-alert-message { font-size: 12px; }
+/* 正文内联标出可定位的待处理替换片段，其余文字保持原样 */
+.frag-mark { padding: 0 2px; border-radius: 3px; background: linear-gradient(180deg, transparent 58%, rgba(211,169,93,.55) 58%); color: inherit; cursor: pointer; }
+.fragment-row.flash { box-shadow: 0 0 0 3px rgba(70,120,180,.35); animation: frag-flash 1.6s ease-out; }
+@keyframes frag-flash { 0% { background: #e4eefb; } 100% { background: inherit; } }
+.revision-current .frag-mark { background: linear-gradient(180deg, transparent 55%, rgba(70,120,180,.45) 55%); }
+/* 意见卡内的替换片段 */
+.fragment-list { display: grid; gap: 7px; margin: 8px 0; }
+.fragment-row { padding: 8px 9px; border: 1px solid #e4d9cb; border-radius: 6px; background: #fdfaf4; }
+.fragment-row.status-accepted { border-color: #aed3bf; background: #f3faf6; }
+.fragment-row.status-rejected { opacity: .6; border-color: #e0c3c0; background: #faf5f4; }
+.fragment-row.status-stale { border-color: #e7c08a; background: #fef6ea; }
+.fragment-sentences { display: grid; grid-template-columns: minmax(0, 1fr) 16px minmax(0, 1fr); align-items: center; gap: 7px; }
+.frag-side { min-width: 0; padding: 6px 8px; border-radius: 5px; }
+.frag-side small { display: block; margin-bottom: 2px; font-size: 9px; font-weight: 700; }
+.frag-side p { margin: 0; font-family: Georgia, "Songti SC", serif; font-size: 11px; line-height: 1.6; word-break: break-word; }
+.frag-old { background: #f4ece3; }
+.frag-old small { color: #a05a43; }
+.frag-old p { color: #7a4a3b; text-decoration: line-through; text-decoration-color: rgba(160,90,67,.45); }
+.frag-new { background: #eaf5ee; }
+.frag-new small { color: #3f7d5c; }
+.frag-new p { color: #2f6249; }
+.frag-arrow { color: #a89379; font-size: 11px; text-align: center; }
+.fragment-meta { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 6px; margin-top: 6px; }
+.fragment-meta .ant-tag { margin-inline-end: 0; }
+.stale-alert { margin: 7px 0; }
+.stale-alert .ant-alert-message { font-size: 11px; }
+.decision-hint { margin: 7px 0 0; color: #96887d; font-size: 10px; }
+/* 审稿人片段编辑器 */
+.frag-editor { display: grid; gap: 8px; }
+.frag-editor-row { display: grid; grid-template-columns: minmax(0, 1fr) 18px minmax(0, 1fr) 30px; align-items: center; gap: 6px; }
+.frag-editor-side small { display: block; margin-bottom: 3px; color: #8a7d72; font-size: 10px; font-weight: 700; }
 .comments-header { position: sticky; top: 0; z-index: 3; padding: 18px 17px 10px; background: rgba(250,248,244,.98); border-bottom: 1px solid #e4ddd5; }
 .comments-header h2 { margin: 0; color: #433a33; font-family: Georgia, "Songti SC", serif; font-size: 16px; }
 .comments-header p { margin: 4px 0 0; color: #96887d; font-size: 10px; }
@@ -66,15 +100,13 @@ button, input, textarea { font: inherit; }
 .comment-card.accepted { border-left: 3px solid #3b8c67; }
 .comment-card.rejected { opacity: .65; border-left: 3px solid #bd5c53; }
 .comment-card.merged { opacity: .65; border-left: 3px solid #6b73b8; }
+.comment-card.stale { border-left: 3px solid #d99a4e; }
 .comment-card .ant-card-head { min-height: 37px; padding: 0 10px; }
 .comment-card .ant-card-head-title { font-size: 11px; }
 .comment-card .ant-card-extra small { font-size: 9px; }
 .comment-card .ant-card-body { padding: 10px; }
 .quote-line { width: 100%; padding: 7px 8px; border: 0; border-left: 3px solid #bd9361; color: #74665b; background: #f5f0e9; font-family: Georgia, "Songti SC", serif; font-size: 11px; font-style: italic; text-align: left; cursor: pointer; }
 .comment-body { margin: 9px 0 7px; color: #403a35; font-size: 12px; line-height: 1.55; }
-.suggestion-box { padding: 8px; border: 1px dashed #92b89f; border-radius: 6px; background: #f2f9f4; }
-.suggestion-box small { color: #477d61; font-size: 9px; font-weight: 700; }
-.suggestion-box p { margin: 4px 0 0; color: #315f49; font-size: 11px; line-height: 1.5; }
 .replies { margin-top: 8px; display: grid; gap: 4px; }
 .reply { display: flex; gap: 7px; padding: 5px 7px; border-radius: 5px; background: #f4f1ed; color: #655b53; font-size: 10px; }
 .reply b { flex: none; color: #7b3f2f; }
